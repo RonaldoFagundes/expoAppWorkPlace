@@ -1,7 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 
+
+
+
 export default StyleSheet.create({
+
+
+
+
+
    containerLoading: {
       flex: 1,
       backgroundColor: '#F5F5F5',
@@ -10,23 +18,52 @@ export default StyleSheet.create({
       alignItems: 'center'
    },
 
-   containerMain: {
-      flexDirection: 'column',
-      height: '100%',
-      width: 'auto',        
-   },
+
+  
+
 
    containerHeader: {
       height: 'auto',
       width: 'auto',
-      alignItems: 'center',
-      padding: 12,
-      borderRadius: 10,
-      //backgroundColor: 'rgba(161, 154, 158, 0.2)',
-      backgroundColor: 'rgba(184, 181, 180, 0.2)', 
-      marginBottom:15,
+      padding:8,    
+      alignItems:'center',
+      margin:5,
+      borderRadius: 14,
+      backgroundColor: 'rgba(161, 154, 158, 0.7)',
+      //backgroundColor: 'rgba(184, 181, 180, 0.2)',     
    },
 
+
+
+
+   containerInfo: {
+      borderRadius: 10,
+      padding: 8,
+      alignItems: 'center',
+      height: 'auto',
+      width: 'auto',
+   },
+
+
+
+
+
+   imgLogo: {
+      // height: 64,
+      // width: 55,  
+       height: 84,
+       width: 84,   
+       borderRadius: 4,
+      // marginRight: 10, 
+      // marginTop:10
+    },
+
+
+
+
+
+
+  /*
    userHeader: {
       height: 'auto',
       width: "auto",
@@ -35,35 +72,39 @@ export default StyleSheet.create({
       backgroundColor: 'transparent',
       textAlign: 'center',
    },
+  */
 
-   imgLogo: {
-     // height: 64,
-     // width: 55,  
-      height: 84,
-      width: 75,   
-      borderRadius: 4,
-      marginRight: 10,
 
-      marginTop:10
-   },
 
-   containerInfo: {
-      borderRadius: 10,
-      padding: 10,
-      alignItems: 'center',
+
+
+   containerMain: {
+      flexDirection: 'column',
       height: 'auto',
       width: 'auto',
+      
+      backgroundColor:'red'
    },
 
+
+
+
+ 
+ 
+
+   
    resizeModel: {   
       height: 100,
-      width: 100,
-      
-      borderRadius: 10,
+      width: 100,   
       marginBottom: 20,
       resizeMode:'contain',
-      borderRadius:24
+      borderRadius:12
    },
+
+
+
+
+
 
    dataList: {
     borderRadius: 6,
@@ -71,6 +112,8 @@ export default StyleSheet.create({
     elevation: 4,
     margin:4,
    },
+
+
 
    cardList:{
       width: "auto",
@@ -107,6 +150,8 @@ export default StyleSheet.create({
       fontSize: 16,
    },
 
+
+
    containerBtnIn:{    
       flexDirection: 'row',     
       justifyContent: 'center',
@@ -115,21 +160,29 @@ export default StyleSheet.create({
    },
 
 
+
+
    containerBtnOut:{
      // backgroundColor: 'rgba(215, 202, 165, 0.22)',
-      backgroundColor: 'rgba(184, 181, 180, 0.2)', 
+     // backgroundColor: 'rgba(184, 181, 180, 0.2)', 
+
+      backgroundColor:'green',
       flexDirection: 'row',     
       justifyContent: 'center',
-      marginTop:15,
-      marginBottom:5,
+      marginTop:25,
+      margin:5,
+      borderRadius:4
+      //marginBottom:5,
    },
+
+
 
 
    btnOne:{
       width: 'auto',
       height: 40,
       justifyContent: 'center',
-      borderRadius: 10,
+      borderRadius: 5,
       marginTop: 15,
       marginBottom: 20,
       alignItems: 'center',
@@ -139,11 +192,12 @@ export default StyleSheet.create({
 
 
 
+
+
    btn: {
       width:'100%',
       height:'100%',
-      alignItems: 'center',
-      
+      alignItems: 'center',      
       justifyContent: 'center',
       /*
       borderRadius: 10,
@@ -151,9 +205,9 @@ export default StyleSheet.create({
       marginBottom: 20,
       alignItems: 'center',
       padding: 10,
-      */   
-     
+      */       
    },
+
 
 
 
@@ -167,5 +221,27 @@ export default StyleSheet.create({
       alignItems: 'center',
       padding: 10,
    },
+
+
+
+
+
+
+   menu:{
+      bottom:'auto',
+      height:'auto',
+      width:'auto',
+      backgroundColor:'red',
+      flexDirection:'row',
+      justifyContent:'space-around',
+      padding:5,
+      margin:5,
+      borderRadius:4
+   }
+
+
+
+
+
 
 });

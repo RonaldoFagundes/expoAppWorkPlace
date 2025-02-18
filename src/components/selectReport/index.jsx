@@ -319,11 +319,15 @@ const duplicateReport = () => {
       .then(res => res.json())
       .then(
         (result) => {
+
           if (result !== "not found") {
             setStandards(result);
           } else {
-            alert(result);
+            navigation.navigate("CadStandard");
+            //alert(result);
+            console.log(result)
           }
+
         }
       )
       .catch(() => {

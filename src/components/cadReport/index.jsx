@@ -43,9 +43,15 @@ export default function CadReport({ navigation }) {
     } = useContext(AuthContext);
 
 
+
     useEffect(() => {
         navigation.addListener('focus', () => setLoad(!load));
+
+        console.log(" reportNumber " + reportNumber);
+
     }, [load, navigation]);
+
+
 
 
     const [modalForm, setModalForm] = useState(false);
@@ -239,188 +245,195 @@ export default function CadReport({ navigation }) {
 
 
 
- return (
+    return (
 
-   <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"} >
 
-    <View
-       style={styles.containerMain}
-      >
 
-      <View style={styles.containerHeader}>
+            <View style={styles.containerHeader}>
 
-          <View style={styles.contentHeader}>
-              <View>
-               <Image
-                 style={styles.imgLogo}
-                 source={{ uri: 'data:image/png;base64,' + imgConstruction }}
-               />
-              </View>
-               <Text style={styles.textMain}>{`${nameConstruction}`}</Text>
-          </View>
-          <LinearGradient
-             colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}                       
-             >
-             <Pressable onPress={() => { navigation.navigate("Home") }}
-                style={styles.btn}
-              >
-               <Text style={styles.textAlert}>Home</Text>
-             </Pressable>
-          </LinearGradient>
-
-      </View>
-
-     <View style={styles.containerInfo}>
-         <Text style={styles.textMain}>{` Tela cadastro de relatório `}</Text>
-     </View>
-
-   <ScrollView horizontal={false}>
-
-      <View style={styles.contentMain}>
-
-       {
-        dataRel.title === ""
-        ?
-
-           <View style={styles.boxWith} >
-                 <LinearGradient
-                   colors={['#ffffff', '#B1B2AB']}  style={styles.btnOne}                                
-                      >
-                    <Pressable onPress={() => setModalForm(true)}
-                     style={styles.btn}
-                     >
-                     <Text style={styles.textAlert}>{`criar relatório`}</Text>
-                    </Pressable>
-                 </LinearGradient>
-             </View>
-         :
-            <View style={styles.boxWithOut} >
-
-               <View style={styles.containerImg} >
-                   {
-                    dataRel.img_one === null ||
-                    dataRel.img_two === null ||
-                    dataRel.img_three === null ||
-                    dataRel.img_four === null
-                   ?
-                      <LinearGradient
-                         colors={['#ffffff', '#B1B2AB']}                                                    
-                       >
-                         <Pressable onPress={() => pickImage()}
-                            style={styles.btnImg}
-                          >
-                            <FontAwesome name='image' size={24} color={"#fff"} />
-                          </Pressable>
-                             <Text style={styles.textBtn}>Adcionar Imagem</Text>
-                      </LinearGradient>
-                    :
-                       <View>
-                         <Text style={styles.textInfo}>limite de imagems excedido</Text>
-                       </View>
-                    }
-
-                  <View style={styles.contentImg}>
-                    {
-                         dataRel.img_one &&
-                         <View>
-                           <Image source={{ uri: dataRel.img_one }} style={styles.resizeModel} />
-                            <Pressable onPress={() => removeImage('img_one')}
-                             style={styles.boxImg}
-                             >
-                               <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
-                            </Pressable>
-                         </View>
-                     }
-
-                     {
-                        dataRel.img_two &&
-                          <View>
-                             <Image source={{ uri: dataRel.img_two }} style={styles.resizeModel} />
-                             <Pressable onPress={() => removeImage('img_two')}
-                                     style={styles.boxImg}
-                                 >
-                                 <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
-                             </Pressable>
-                          </View>
-                      }
-                   </View>
-
-                    <View style={styles.contentImg}>
-                      {
-                         dataRel.img_three &&
-                          <View>
-                              <Image source={{ uri: dataRel.img_three }} style={styles.resizeModel} />
-                              <Pressable onPress={() => removeImage('img_three')}
-                                 style={styles.boxImg}
-                               >
-                                <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
-                              </Pressable>
-                          </View>
-                      }
-
-                      {
-                         dataRel.img_four &&
-                           <View>
-                              <Image source={{ uri: dataRel.img_four }} style={styles.resizeModel} />
-                              <Pressable onPress={() => removeImage('img_four')}
-                                  style={styles.boxImg}
-                              >
-                                  <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
-                              </Pressable>
-                          </View>
-                      }
+                <View style={styles.contentHeader}>
+                    <View>
+                        <Image
+                            style={styles.imgLogo}
+                            source={{ uri: 'data:image/png;base64,' + imgConstruction }}
+                        />
                     </View>
-                    
+                    <Text style={styles.textMain}>{`${nameConstruction}`}</Text>
                 </View>
 
-                <View style={styles.cardRel}>
-                    {
-                     dataRel.page === 0 ?
-                        <Text style={styles.textData}>{` Data ${dataRel.date} `}</Text>
-                        :
-                        <View></View>
-                    }
-                    <Text style={styles.textData}>{`  ${dataRel.title} `}</Text>
-                    <Text style={styles.textData}>{`  ${dataRel.desc} `}</Text>
+                <LinearGradient
+                    colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}
+                >
+                    <Pressable onPress={() => { navigation.navigate("Home") }}
+                        style={styles.btn}>
+                        <Text style={styles.textAlert}>Home</Text>
+                    </Pressable>
+                </LinearGradient>
 
-                    <Text style={styles.textData}>{` ${dataRel.status} `}</Text>
+            </View>
 
-                     {
-                      dataRel.status === imgTags[0].status_tag
-                       ?
-                         <Image
-                            style={styles.imgLogo}
-                            source={{ uri: 'data:image/png;base64,' + imgTags[0].img_tag }}
-                          />
-                        :
-                          dataRel.status === imgTags[1].status_tag
-                        ?
-                         <Image
-                          style={styles.imgLogo}
-                          source={{ uri: 'data:image/png;base64,' + imgTags[1].img_tag }}
-                         />
 
-                        :
-                         dataRel.status === imgTags[2].status_tag
-                        ?                       
 
-                         <Image
-                           style={styles.imgLogo}
-                           source={{ uri: 'data:image/png;base64,' + imgTags[2].img_tag }}
-                          />
-                        :
-                         dataRel.status === imgTags[3].status_tag
-                        ?
-                         <Image
-                           style={styles.imgLogo}
-                           source={{ uri: 'data:image/png;base64,' + imgTags[3].img_tag }}
-                        />                     
-                        :
-                         <View></View>
-                     }
-                           {/*   
+
+
+
+            <View
+                style={styles.containerMain}
+            >
+
+                <View style={styles.containerInfo}>
+                    <Text style={styles.textMain}>{` Tela cadastro de relatório `}</Text>
+                </View>
+
+
+
+                <ScrollView horizontal={false}>
+
+                    <View style={styles.contentMain}>
+
+                        {
+                            dataRel.title === ""
+                                ?
+
+                                <View style={styles.boxWith} >
+                                    <LinearGradient
+                                        colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}
+                                    >
+                                        <Pressable onPress={() => setModalForm(true)}
+                                            style={styles.btn}
+                                        >
+                                            <Text style={styles.textAlert}>{`criar relatório`}</Text>
+                                        </Pressable>
+                                    </LinearGradient>
+                                </View>
+                                :
+                                <View style={styles.boxWithOut} >
+
+                                    <View style={styles.containerImg} >
+                                        {
+                                            dataRel.img_one === null ||
+                                                dataRel.img_two === null ||
+                                                dataRel.img_three === null ||
+                                                dataRel.img_four === null
+                                                ?
+                                                <LinearGradient
+                                                    colors={['#ffffff', '#B1B2AB']}
+                                                >
+                                                    <Pressable onPress={() => pickImage()}
+                                                        style={styles.btnImg}
+                                                    >
+                                                        <FontAwesome name='image' size={24} color={"#fff"} />
+                                                    </Pressable>
+                                                    <Text style={styles.textBtn}>Adcionar Imagem</Text>
+                                                </LinearGradient>
+                                                :
+                                                <View>
+                                                    <Text style={styles.textInfo}>limite de imagems excedido</Text>
+                                                </View>
+                                        }
+
+                                        <View style={styles.contentImg}>
+                                            {
+                                                dataRel.img_one &&
+                                                <View>
+                                                    <Image source={{ uri: dataRel.img_one }} style={styles.resizeModel} />
+                                                    <Pressable onPress={() => removeImage('img_one')}
+                                                        style={styles.boxImg}
+                                                    >
+                                                        <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
+                                                    </Pressable>
+                                                </View>
+                                            }
+
+                                            {
+                                                dataRel.img_two &&
+                                                <View>
+                                                    <Image source={{ uri: dataRel.img_two }} style={styles.resizeModel} />
+                                                    <Pressable onPress={() => removeImage('img_two')}
+                                                        style={styles.boxImg}
+                                                    >
+                                                        <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
+                                                    </Pressable>
+                                                </View>
+                                            }
+                                        </View>
+
+                                        <View style={styles.contentImg}>
+                                            {
+                                                dataRel.img_three &&
+                                                <View>
+                                                    <Image source={{ uri: dataRel.img_three }} style={styles.resizeModel} />
+                                                    <Pressable onPress={() => removeImage('img_three')}
+                                                        style={styles.boxImg}
+                                                    >
+                                                        <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
+                                                    </Pressable>
+                                                </View>
+                                            }
+
+                                            {
+                                                dataRel.img_four &&
+                                                <View>
+                                                    <Image source={{ uri: dataRel.img_four }} style={styles.resizeModel} />
+                                                    <Pressable onPress={() => removeImage('img_four')}
+                                                        style={styles.boxImg}
+                                                    >
+                                                        <FontAwesome name='remove' size={12} color={"#B8AAA7"} />
+                                                    </Pressable>
+                                                </View>
+                                            }
+                                        </View>
+
+                                    </View>
+
+                                    <View style={styles.cardRel}>
+                                        {
+                                            dataRel.page === 0 ?
+                                                <Text style={styles.textData}>{` Data ${dataRel.date} `}</Text>
+                                                :
+                                                <View></View>
+                                        }
+                                        <Text style={styles.textData}>{`  ${dataRel.title} `}</Text>
+                                        <Text style={styles.textData}>{`  ${dataRel.desc} `}</Text>
+
+                                        <Text style={styles.textData}>{` ${dataRel.status} `}</Text>
+
+                                        {
+                                            dataRel.status === imgTags[0].status_tag
+                                                ?
+                                                <Image
+                                                    style={styles.imgLogo}
+                                                    source={{ uri: 'data:image/png;base64,' + imgTags[0].img_tag }}
+                                                />
+                                                :
+                                                dataRel.status === imgTags[1].status_tag
+                                                    ?
+                                                    <Image
+                                                        style={styles.imgLogo}
+                                                        source={{ uri: 'data:image/png;base64,' + imgTags[1].img_tag }}
+                                                    />
+
+                                                    :
+                                                    dataRel.status === imgTags[2].status_tag
+                                                        ?
+
+                                                        <Image
+                                                            style={styles.imgLogo}
+                                                            source={{ uri: 'data:image/png;base64,' + imgTags[2].img_tag }}
+                                                        />
+                                                        :
+                                                        dataRel.status === imgTags[3].status_tag
+                                                            ?
+                                                            <Image
+                                                                style={styles.imgLogo}
+                                                                source={{ uri: 'data:image/png;base64,' + imgTags[3].img_tag }}
+                                                            />
+                                                            :
+                                                            <View></View>
+                                        }
+                                        {/*   
                             {dataRel.page == 0 ?
                                 <Text style={styles.textData}>{` ${dataRel.status} `}</Text>
                                 :
@@ -428,174 +441,181 @@ export default function CadReport({ navigation }) {
                             }
                           */}
 
-                </View>
+                                    </View>
 
-                <View style={styles.containerBtn}>
+                                    <View style={styles.containerBtn}>
 
-                    <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
-                        <Pressable onPress={() => finish()}
-                           style={styles.btn}
-                         >
-                            <Text style={styles.textBtn}>Finalizar</Text>
-                        </Pressable>
-                    </LinearGradient>
+                                        <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
+                                            <Pressable onPress={() => finish()}
+                                                style={styles.btn}
+                                            >
+                                                <Text style={styles.textBtn}>Finalizar</Text>
+                                            </Pressable>
+                                        </LinearGradient>
 
-                    <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
-                       <Pressable onPress={() => addPage()}
-                        style={styles.btn}
-                        >
-                          <Text style={styles.textBtn}>Adcionar Pagina</Text>
-                        </Pressable>
-                    </LinearGradient>
+                                        <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
+                                            <Pressable onPress={() => addPage()}
+                                                style={styles.btn}
+                                            >
+                                                <Text style={styles.textBtn}>Adcionar Pagina</Text>
+                                            </Pressable>
+                                        </LinearGradient>
 
-                   </View>
+                                    </View>
 
-                </View>
-                 }        
-              </View>
+                                </View>
+                        }
+                    </View>
 
-            </ScrollView>
-
-            <Modal
-              animationType='fade'
-              visible={modalForm}
-             >
-
-              <ScrollView horizontal={true}>
-
-                <View style={styles.contentMain}>
-
-                  <View><Text style={styles.textMain}>Criar Relatório</Text></View>
+                </ScrollView>
 
 
-                    <View style={styles.containerForm}>
 
-                     {
-                       dataRel.page === 0 
-                            
-                        ?
-                        <View style={styles.fieldMain}>
 
-                              <TextInput
-                                  style={styles.input}
-                                  underlineColorAndroid="transparent"
-                                  placeholder="Data:"
-                                  placeholderTextColor="#000000"
-                                  onChangeText={
-                                      (valor) => handleInputChange('date', valor)
-                                  }
-                              />
-                        </View>
-                        :
-                          <View></View>
-                     }
 
-                      <View style={styles.fieldMain}>
 
-                            <TextInput
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                /* placeholder="Titulo:" */
-                                placeholderTextColor="#000000"
-                                onChangeText={
-                                    (valor) => handleInputChange('title', valor)
+
+               <Modal
+                    animationType='fade'
+                    visible={modalForm}
+                >
+
+
+                    <ScrollView horizontal={true}>
+
+                        <View style={styles.contentMain}>
+
+                            <View><Text style={styles.textMain}>Criar Relatório</Text></View>
+
+
+                            <View style={styles.containerForm}>
+
+                                {
+                                    dataRel.page === 0
+
+                                        ?
+                                        <View style={styles.fieldMain}>
+
+                                            <TextInput
+                                                style={styles.input}
+                                                underlineColorAndroid="transparent"
+                                                placeholder="Data:"
+                                                placeholderTextColor="#000000"
+                                                onChangeText={
+                                                    (valor) => handleInputChange('date', valor)
+                                                }
+                                            />
+                                        </View>
+                                        :
+                                        <View></View>
                                 }
-                            />
 
-                      </View>
+                                <View style={styles.fieldMain}>
 
-                      <View style={styles.fieldDesc}>
-                            <TextInput
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                placeholderTextColor="#000000"
-                                rows={4}
-                                multiline={true}
-                                onChangeText={
-                                    (valor) => handleInputChange('desc', valor)
-                                }
-                            />
-                      </View>
+                                    <TextInput
+                                        style={styles.input}
+                                        underlineColorAndroid="transparent"
+                                        /* placeholder="Titulo:" */
+                                        placeholderTextColor="#000000"
+                                        onChangeText={
+                                            (valor) => handleInputChange('title', valor)
+                                        }
+                                    />
 
-                          {/* 
+                                </View>
+
+                                <View style={styles.fieldDesc}>
+                                    <TextInput
+                                        style={styles.input}
+                                        underlineColorAndroid="transparent"
+                                        placeholderTextColor="#000000"
+                                        rows={4}
+                                        multiline={true}
+                                        onChangeText={
+                                            (valor) => handleInputChange('desc', valor)
+                                        }
+                                    />
+                                </View>
+
+                                {/* 
                            {
                             dataRel.page === 0 ?
                           */}
 
-                       <View style={styles.containerCheckBox}>
+                                <View style={styles.containerCheckBox}>
 
-                         <FlatList
-                            
-                            contentContainerStyle={{ 
-                                flexDirection: 'row',
-                                flexWrap: 'wrap' ,
-                                justifyContent:'space-evenly',
-                                maxWidth:1900,maxHeight:130
-                            }}
+                                    <FlatList
 
-                            data={imgTags}
-                            renderItem={({ index, item }) =>
+                                        contentContainerStyle={{
+                                            flexDirection: 'row',
+                                            flexWrap: 'wrap',
+                                            justifyContent: 'space-evenly',
+                                            maxWidth: 1900, maxHeight: 130
+                                        }}
 
-                             <View style={styles.contentCheckBox}>
+                                        data={imgTags}
+                                        renderItem={({ index, item }) =>
 
-                                 <View>
-                                     <Text>{item.status_tag}</Text>
-                                 </View>
- 
-                                  <Pressable onPress={() => selectStatus(index, item)}>
-                                    {
-                                      statusCheckBox !== index
-                                      ?
-                                         <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
-                                      :
-                                         <MaterialCommunityIcons name="checkbox-intermediate" size={24} color="black" />
-                                    }
-                                  </Pressable>
+                                            <View style={styles.contentCheckBox}>
 
-                             </View>
-                            }
-                           >
-                          </FlatList>                          
+                                                <View>
+                                                    <Text>{item.status_tag}</Text>
+                                                </View>
 
-                        </View>
-                              {/* 
+                                                <Pressable onPress={() => selectStatus(index, item)}>
+                                                    {
+                                                        statusCheckBox !== index
+                                                            ?
+                                                            <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
+                                                            :
+                                                            <MaterialCommunityIcons name="checkbox-intermediate" size={24} color="black" />
+                                                    }
+                                                </Pressable>
+
+                                            </View>
+                                        }
+                                    >
+                                    </FlatList>
+
+                                </View>
+                                {/* 
                                 :
                                 <View></View>
                                }
                               */}
 
-                        <View>
-                            <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
-                                <Pressable onPress={() => setModalForm(false)}
-                                    style={styles.btn}
-                                    >
-                                    <Text style={styles.textBtn}>proximo</Text>
-                                </Pressable>
+                                <View>
+                                    <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
+                                        <Pressable onPress={() => setModalForm(false)}
+                                            style={styles.btn}
+                                        >
+                                            <Text style={styles.textBtn}>proximo</Text>
+                                        </Pressable>
 
-                            </LinearGradient>
+                                    </LinearGradient>
 
-                            <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
-                                <Pressable onPress={() => cancel()}
-                                    style={styles.btn}
-                                    >
-                                    <Text style={styles.textBtn}>cancelar</Text>
-                                </Pressable>
-                            </LinearGradient>
+                                    <LinearGradient colors={['#ffffff', '#B1B2AB']} style={styles.btnOne}>
+                                        <Pressable onPress={() => cancel()}
+                                            style={styles.btn}
+                                        >
+                                            <Text style={styles.textBtn}>cancelar</Text>
+                                        </Pressable>
+                                    </LinearGradient>
+
+                                </View>
+
+                            </View>
+
 
                         </View>
 
-                    </View>
+                    </ScrollView>
 
+                </Modal>
 
-                 </View>   
+            </View>
 
-               </ScrollView>
-
-            </Modal>
-
-          </View>
-
-      </KeyboardAvoidingView >
+        </KeyboardAvoidingView >
     )
 }
 

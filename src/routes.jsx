@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import Home from './components/home';
+import CadCompany from './components/cadCompany';
+import CadTags from './components/cadTags';
 import CadConstruction from './components/cadConstruction';
 import CadReport from './components/cadReport';
 import Report from './components/report';
@@ -20,6 +22,14 @@ export default function Routes() {
       <Stack.Screen
         name='Home'
         component={Home}
+      />
+      <Stack.Screen
+        name='CadCompany'
+        component={CadCompany}
+      />
+       <Stack.Screen
+        name='CadTags'
+        component={CadTags}
       />
       <Stack.Screen
         name='CadConstruction'
